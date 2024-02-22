@@ -1,0 +1,26 @@
+{
+  "name": "playwright-automated-testing",
+  "version": "1.0.0",
+  "description": "Automated testing using playwright",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test --headed"
+  },
+  "keywords": [
+    "playwright"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.41.2",
+    "@types/node": "^20.11.19"
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "playwright": "^1.41.2",
+    "playwright-core": "^1.41.2",
+    "undici-types": "^5.26.5"
+  }
+}
