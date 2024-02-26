@@ -1,5 +1,5 @@
 const { test, expect } = require('@playwright/test');
-const { LoginPage, ProductsPage } = require('../pages')
+const { LoginPage, InventoryPage } = require('../pages')
 
 test.beforeEach(async ({ page }) => {
   const login = new LoginPage(page);
@@ -9,13 +9,13 @@ test.beforeEach(async ({ page }) => {
 test.describe('Login', () => {
   test('Standard User can successfully logged in', async ({ page }) => {
     const login = new LoginPage(page);
-    const products = new ProductsPage(page);
+    const inventory = new InventoryPage(page);
     const credentials = {
       username : 'standard_user',
       password : 'secret_sauce'
     }
     await login.login(credentials);
-    expect(await products.productContainer.first()).toBeVisible()
+    expect(await inventory.productContainer.first()).toBeVisible()
   });
 
   test('Error message is displayed for Locked out User', async ({ page }) => {
