@@ -83,11 +83,50 @@ test.describe('Inventory', () => {
   });
 
   test('Products can be sorted by price from low to high', async ({ page }) => {
-    
+    const inventory = new InventoryPage(page);
+    await expect(inventory.productSortContainer).toHaveValue('az');
+    const productsDetails = await inventory.getAllProductsDetails();
+
+    productsDetails.forEach((product) => {
+      let formattedPrice = product.product_price.replace('$', '').replace(',','');
+      return product.product_price = formattedPrice
+    });
+
+    productsDetails.sort((a, b) => a.product_price - b.product_price);
+
+    await inventory.productSortContainer.selectOption('lohi');
+    const sortedProducts = await inventory.getAllProductsDetails();
+    sortedProducts.forEach((product) => {
+      let formattedPrice = product.product_price.replace('$', '').replace(',','');
+      return product.product_price = formattedPrice
+    });
+
+    expect(productsDetails).toStrictEqual(sortedProducts);
   });
 
   test('Products can be sorted by price from high to low', async ({ page }) => {
-    
+    const inventory = new InventoryPage(page);
+    await expect(inventory.productSortContainer).toHaveValue('az');
+    const productsDetails = await inventory.getAllProductsDetails();
+
+    productsDetails.forEach((product) => {
+      let formattedPrice = product.product_price.replace('$', '').replace(',','');
+      return product.product_price = formattedPrice
+    });
+
+    productsDetails.sort((a, b) => a.product_price - b.product_price);
+    const sortedProductDetails = productsDetails.reverse();
+
+    await inventory.productSortContainer.selectOption('hilo');
+    const sortedProducts = await inventory.getAllProductsDetails();
+    sortedProducts.forEach((product) => {
+      let formattedPrice = product.product_price.replace('$', '').replace(',','');
+      return product.product_price = formattedPrice
+    });
+
+    expect(sortedProductDetails).toStrictEqual(sortedProducts);
+
+    //TODO: update script to sort items with same price
   });
 
 });

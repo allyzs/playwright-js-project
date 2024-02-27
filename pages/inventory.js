@@ -7,11 +7,6 @@ class InventoryPage {
     this.productContainer = page.locator('.inventory_list');
     
     this.productSortContainer = page.locator('//select[@class="product_sort_container"]');
-    this.sortByAZ = page.locator('//select//option[@value="az"]');
-    this.sortByZA = page.locator('//select//option[@value="za"]');
-    this.sortByLoHi = page.locator('//select//option[@value="lohi"]')
-    this.sortByHiLo = page.locator('//select//option[@value="hilo"]')
-    
     this.productItem = page.locator('//div[@class="inventory_item"]');
 
     this.cart = page.locator('//a[@class="shopping_cart_link"]')
