@@ -8,6 +8,7 @@ class InventoryPage {
     
     this.productSortContainer = page.locator('//select[@class="product_sort_container"]');
     this.productItem = page.locator('//div[@class="inventory_item"]');
+    this.productNameLink = page.locator('//div[@class="inventory_item_name "]');
 
     this.cart = page.locator('//a[@class="shopping_cart_link"]')
   }
@@ -72,6 +73,19 @@ class InventoryPage {
 
   async getCartDetails () {
     return this.cart.innerText();
+  }
+
+  async openInventoryItem () {
+    const products = await this.productItem.all();
+    const maxNumber = products.length - 1
+    const productIndex = Math.floor((Math.random() * maxNumber)) + 1
+
+    const productDetails = await this.getProductDetails(productIndex);
+
+    await this.productNameLink.nth(productIndex).click();
+
+    return productDetails
+
   }
   
 };

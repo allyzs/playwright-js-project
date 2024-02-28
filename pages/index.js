@@ -1,4 +1,5 @@
 module.exports = {
     LoginPage: require('./login'),
-    InventoryPage: require('./inventory')
+    InventoryPage: require('./inventory'),
+    ProductPage: require('./product')
 }
